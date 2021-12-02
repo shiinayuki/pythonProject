@@ -30,16 +30,16 @@ class MoveThread(Thread):
         self.__audio = ALProxy("ALTextToSpeech",
                                self.__robot_conf['basic_param']['ip'],
                                self.__robot_conf['basic_param']['port'])
-        print self.__robot_conf['basic_param']['ip']
+        print(self.__robot_conf['basic_param']['ip'])
 
     def wait_to_start(self):
         # 等待开始线程发来出发指令
         while True:
             if not self.__start_move_queue.empty():
                 msg = self.__start_move_queue.get()
-                print 'move_queue_msg:', msg
+                print('move_queue_msg:', msg)
                 if msg == 'start':
-                    print 'start_move_queue received:', msg
+                    print('start_move_queue received:', msg)
                     break
 
     def move(self):
