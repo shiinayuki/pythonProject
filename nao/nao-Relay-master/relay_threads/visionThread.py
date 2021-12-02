@@ -70,18 +70,18 @@ class VisionThread(Thread):
             cmd = 'forward'
         else:
             line = lines[0]
-            print 'line：  ', line
+            print('line：  ', line)
             # for line in lines:
             x1, y1, x2, y2 = line[0]
             if x1 == x2:
                 cmd = 'forward'
             else:
                 slope = (y1 - y2)*1.0 / (x1 - x2)
-                print "slope:", slope
+                print("slope:", slope)
                 theta = np.arctan(slope)
                 degrees_theta = np.degrees(theta)
-                print '弧度制单位：', theta
-                print '角度制单位：', degrees_theta
+                print('弧度制单位：', theta)
+                print('角度制单位：', degrees_theta)
                 if -90 <= degrees_theta <= -57 or 50 <= degrees_theta <= 90:
                     cmd = 'forward'
                 elif 10 <= degrees_theta < 50:
@@ -106,7 +106,7 @@ class VisionThread(Thread):
             if not self.__start_vision_queue.empty():
                 msg = self.__start_vision_queue.get()
                 if msg == 'start':
-                    print 'vision_queue_msg :', msg
+                    print('vision_queue_msg :', msg)
                     break
 
         while True:
@@ -120,7 +120,7 @@ class VisionThread(Thread):
                 self.__vision_move_queue.put(cmd)
             else:
                 self.__vision_move_queue.put(cmd)
-            print 'cmd', cmd
+            print('cmd', cmd)
 
             # 判断停止后，断开摄像头订阅
             if cmd == 'stop':
